@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Moisture Monitor</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2E7D32;
+            margin-bottom: 20px;
+        }
+
+        .moisture-box {
+            background: #E8F5E9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .value {
+            font-size: 40px;
+            font-weight: bold;
+            color: #1B5E20;
+        }
+
+        .status {
+            font-size: 20px;
+            margin-top: 10px;
+            color: #388E3C;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 25px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 65%;
+            background: #4CAF50;
+            text-align: center;
+            color: white;
+            line-height: 25px;
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #2E7D32;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1B5E20;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Soil Moisture Monitor</h1>
+
+        <div class="moisture-box">
+            <div class="value" id="moistureValue">65%</div>
+            <div class="status" id="statusText">Soil is Moist</div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">65%</div>
+        </div>
+
+        <button onclick="updateMoisture()">Refresh Data</button>
+    </div>
+
+    <script>
+        function updateMoisture() {
+            // Random moisture value
+            let moisture = Math.floor(Math.random() * 101);
+
+            document.getElementById("moistureValue").innerText = moisture + "%";
+            document.getElementById("progressBar").style.width = moisture + "%";
+            document.getElementById("progressBar").innerText = moisture + "%";
+
+            let status = "";
+
+            if (moisture < 30) {
+                status = "Soil is Dry";
+            } 
+            else if (moisture < 70) {
+                status = "Soil is Moist";
+            } 
+            else {
+                status = "Soil is Wet";
+            }
+
+            document.getElementById("statusText").innerText = status;
+        }
+    </script>
+
+</body>
+</html>
